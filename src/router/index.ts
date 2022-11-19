@@ -1,8 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import Index from '../views/Index.view.vue';
-import Auth from '../views/auth/auth.router.js';
+import Index from '@/views/Index.view.vue';
+import AuthRoutes from '../views/auth/auth.router';
 import {useUserStore} from '@/stores/User.store';
-import type {IUser} from "@/models/User.mode";
 import {storeToRefs} from "pinia";
 
 const router = createRouter({
@@ -16,7 +15,7 @@ const router = createRouter({
                 requiresAuth: true
             }
         },
-        ...Auth
+        ...AuthRoutes
     ]
 });
 router.beforeEach((to, from, next) => {
