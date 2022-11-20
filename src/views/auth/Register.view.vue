@@ -3,9 +3,13 @@ import {useUserStore} from '@/stores/User.store';
 import {defineComponent} from "vue";
 import type {IRegisterForm} from "@/models/User.model";
 import { useRouter } from 'vue-router'
+import {useMeta} from "vue-meta";
 
 export default defineComponent({
   setup() {
+    useMeta({
+      title: "Register",
+    });
     const userStore = useUserStore();
     const router = useRouter();
     const form: IRegisterForm = {

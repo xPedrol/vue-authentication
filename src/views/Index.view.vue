@@ -1,5 +1,15 @@
 <script lang="ts">
-export default {};
+import {defineComponent} from "vue";
+import {useMeta} from "vue-meta";
+
+export default defineComponent({
+  setup() {
+    useMeta({
+      title: "Dashboard",
+    });
+    return {};
+  }
+});
 </script>
 <template>
   <header class="bg-white shadow">

@@ -2,9 +2,13 @@
 import {defineComponent} from "vue";
 import {useUserStore} from "@/stores/User.store";
 import {useRouter} from "vue-router";
+import {useMeta} from "vue-meta";
 
 export default defineComponent({
   setup() {
+    useMeta({
+      title: "Login",
+    });
     const userStore = useUserStore();
     const router = useRouter();
     const form = {
@@ -54,7 +58,7 @@ export default defineComponent({
             </label>
             <input v-model="form.password" autocomplete="current-password"
                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-4 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                   id="grid-password" type="password" placeholder="******************">
+                   id="grid-password" type="password" placeholder="Digite sua senha...">
           </div>
         </div>
         <div class="flex justify-between items-center mb-3">

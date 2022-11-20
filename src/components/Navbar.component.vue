@@ -2,6 +2,7 @@
 import {defineComponent, ref} from "vue";
 import {useUserStore} from "@/stores/User.store";
 import {useRouter} from "vue-router";
+import {storeToRefs} from "pinia";
 
 export default defineComponent({
   setup() {
@@ -9,11 +10,14 @@ export default defineComponent({
     const menuDropdown = ref(false);
     const userStore = useUserStore();
     const router = useRouter();
+    const {user} = storeToRefs(userStore);
+    console.warn(user);
     const logout = () => {
       userStore.logout();
       router.push('/login');
     };
     return {
+      user,
       navDropdown,
       menuDropdown,
       logout
@@ -51,7 +55,7 @@ export default defineComponent({
               </div>
             </div>
           </div>
-          <div class="hidden md:block">
+          <div class="hidden md:block" v-if="user">
             <div class="ml-4 flex items-center md:ml-6">
 
               <!-- Profile dropdown -->
@@ -137,7 +141,7 @@ export default defineComponent({
           </a>
 
         </div>
-        <div class="border-t border-gray-700 pt-4 pb-3">
+        <div class="border-t border-gray-700 pt-4 pb-3" v-if="user">
           <div class="flex items-center px-5">
             <div class="flex-shrink-0">
               <img class="h-10 w-10 rounded-full"
@@ -145,8 +149,8 @@ export default defineComponent({
                    alt="">
             </div>
             <div class="ml-3">
-              <div class="text-base font-medium leading-none text-white">Tom Cook</div>
-              <div class="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
+              <div class="text-base font-medium leading-none text-white">{{user.name}}</div>
+              <div class="text-sm font-medium leading-none text-gray-400">{{user.email}}</div>
             </div>
           </div>
           <div class="mt-3 space-y-1 px-2">
