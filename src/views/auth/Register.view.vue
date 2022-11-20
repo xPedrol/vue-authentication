@@ -47,7 +47,7 @@ export default defineComponent({
             <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-first-name">
               Nome
             </label>
-            <input required v-model="form.name"
+            <input required v-model="form.name" autocomplete="name"
                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded px-4 py-4 mb-3 leading-tight  focus:border-gray-500 focus:outline-none focus:bg-white"
                    id="grid-name" type="text" placeholder="Digite seu nome...">
             <!--            <p class="text-red-500 text-xs italic">Please fill out this field.</p>-->
@@ -56,7 +56,7 @@ export default defineComponent({
             <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-first-name">
               Email
             </label>
-            <input required v-model="form.email"
+            <input required v-model="form.email" autocomplete="email"
                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded px-4 py-4 mb-3 leading-tight  focus:border-gray-500 focus:outline-none focus:bg-white"
                    id="grid-email" type="email" placeholder="Digite seu email...">
             <!--            <p class="text-red-500 text-xs italic">Please fill out this field.</p>-->
@@ -67,7 +67,7 @@ export default defineComponent({
             <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-password">
               Senha
             </label>
-            <input required v-model="form.password"
+            <input required v-model="form.password" autocomplete="password"
                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-4 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                    id="grid-password" type="password" placeholder="Digite sua senha...">
           </div>
@@ -75,7 +75,7 @@ export default defineComponent({
             <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-password">
               Confirmaar Senha
             </label>
-            <input required v-model="form.confirmPassword"
+            <input required v-model="form.confirmPassword" autocomplete="confirmPassword"
                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-4 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                    id="grid--confirm-password" type="password" placeholder="Confirme sua senha...">
           </div>

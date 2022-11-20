@@ -5,10 +5,12 @@ import {User} from "@/models/User.model";
 import {defaultOptions} from "@/config/cookie.config";
 
 export const useUserStore = defineStore('user', {
-    state: () => ({
-        users: [] as IUser[],
-        user: null as IUser | null,
-    }),
+    state: () => {
+        return {
+            users: [] as IUser[],
+            user: null as IUser | null,
+        };
+    },
     getters: {
         getUsers(): IUser[] {
             return this.users;
@@ -32,6 +34,7 @@ export const useUserStore = defineStore('user', {
                 password: registerUser.password,
             });
             if (!this.findUserByEmail(user.email)) {
+                console.warn(this.user);
                 this.users.push(user);
                 const cookies = useCookies(['locale']);
                 cookies.set('users', this.users, defaultOptions);
@@ -57,12 +60,21 @@ export const useUserStore = defineStore('user', {
             }
         },
         getUserById(id: string): IUser | null {
-            return this.users.find(user => user.id === id) ?? null;
+            if (this.users && this.users.length > 0) {
+                return this.users.find(user => user.id === id) ?? null;
+            }
+            return null;
         },
         findUserByEmail(email: string): IUser | null {
             const cookies = useCookies(['locale']);
-            this.users = cookies.get('users');
-            return this.users.find(user => user.email === email) ?? null;
+            const storedUsers = cookies.get('users');
+            if(Array.isArray(storedUsers)) {
+                this.users = storedUsers;
+            }
+            if (this.users && this.users.length > 0) {
+                return this.users.find(user => user.email === email) ?? null;
+            }
+            return null;
         }
     }
 });
