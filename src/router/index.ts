@@ -2,7 +2,6 @@ import {createRouter, createWebHistory} from 'vue-router';
 import Index from '@/views/Index.view.vue';
 import AuthRoutes from '../views/auth/auth.router';
 import {useUserStore} from '@/stores/User.store';
-import {storeToRefs} from "pinia";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,10 +19,12 @@ const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
     const userStore = useUserStore();
-    const {user} = storeToRefs(userStore);
-    console.warn('userStore', user.value === null);
-    if (to.meta.requiresAuth && user.value === null) {
+    const user = userStore.getUser();
+    console.warn(user);
+    if (to.meta.requiresAuth && !user) {
         next({name: 'login'});
+    } else if (to.meta.authRoute && user) {
+        next({name: 'home'});
     } else {
         next();
     }
