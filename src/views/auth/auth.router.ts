@@ -1,14 +1,17 @@
+import Login from './Login.view.vue';
+import Register from './Register.view.vue';
+
 export default [
     {
         path: '/login',
         name: 'login',
-        component: import('./Login.view.vue'),
+        component: Login,
         meta: {authRoute: true}
     },
     {
         path: '/register',
         name: 'register',
-        component: import('./Register.view.vue'),
+        component: Register,
         meta: {authRoute: true}
     },
 ];
